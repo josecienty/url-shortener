@@ -1,0 +1,19 @@
+datasource db {
+    provider = "mysql"
+    url      = env("DATABASE_URL")
+}
+
+generator client {
+    provider = "prisma-client-js"
+    output   = "./generated"
+}
+
+model short {
+    id        Int      @id @default(autoincrement())
+    link      String
+    alias     String   @unique
+    vistas    Int      @default(0)
+    estado    Boolean  @default(true)
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
